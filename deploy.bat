@@ -14,7 +14,7 @@ echo $ git add .
 git add .
 
 echo $ git-commit
-git-commit
+call git-commit
 
 :willpushed
 set /p willpushed="Will pushed? (y/n): "

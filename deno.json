@@ -1,4 +1,5 @@
 {
+  "name": "@murat/backend",
   "tasks": {
     "dev": "deno run --watch --allow-net --allow-read ./testing/main.ts",
     "bump:patch": "deno run --allow-read --allow-write bump_version.ts patch",

@@ -1,5 +1,5 @@
 import type { Endpoint, EndpointHandler, ExportsType, ParsedEndpoint, ParsedMethod } from '@/types/types.d.ts';
-import * as path from "jsr:@std/path";
+import * as path from "jsr:@std/path@1.0.8";
 import type { Backend } from "@/mod.ts";
 import { buildMiddlewareSteps } from "@/endpoints/middlewareHandler.ts";
 

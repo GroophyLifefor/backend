@@ -1,5 +1,5 @@
 import type { H } from 'npm:hono/types';
-import { createMiddleware } from 'npm:hono/factory';
+import { createMiddleware } from 'npm:hono@4.7.0/factory';
 import type { Backend, Ctx } from '@/mod.ts';
 import type { ApplyMiddlewareParams, ParsedEndpoint } from '@/types/types.d.ts';
 

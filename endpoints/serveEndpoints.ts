@@ -2,7 +2,6 @@ import type { Handler, Hono } from 'hono';
 import type { ParsedEndpoint } from '@/types/types.d.ts';
 import type { H } from 'hono/types';
 import type { Backend } from "@/mod.ts";
-import { middlewares } from "@/testing/api/hello.ts";
 
 interface MethodMap {
   [key: string]: (path: string, ...handlers: H[]) => void;

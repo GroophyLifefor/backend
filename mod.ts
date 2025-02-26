@@ -3,7 +3,7 @@ import {
   loadEndpoints,
   loadEndpointsFromFolder,
 } from '@/endpoints/loadEndpoints.ts';
-import { Endpoint, ParsedEndpoint, AppConfigType, OptionalAppConfigType } from '@/types/types.d.ts';
+import { Endpoint, ParsedEndpoint, AppConfigType, OptionalAppConfigType, Ctx } from '@/types/types.d.ts';
 
 const defaultConfig: AppConfigType = {
   debug: false,
@@ -37,4 +37,4 @@ class Backend {
   }
 }
 
-export { Backend };
+export { Backend, type Ctx };

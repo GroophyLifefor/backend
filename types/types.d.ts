@@ -41,4 +41,4 @@ type OptionalAppConfigType = {
   [K in keyof AppConfigType]?: AppConfigType[K];
 };
 
-export { Ctx, ValidationType, EndpointHandler, Endpoint, ParsedEndpoint, AppConfigType, OptionalAppConfigType };
+export type { Ctx, ValidationType, EndpointHandler, Endpoint, ParsedEndpoint, AppConfigType, OptionalAppConfigType };

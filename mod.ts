@@ -1,4 +1,4 @@
-import { Hono } from 'npm:hono@4.7.1';
+import { Hono } from 'hono';
 import {
   loadEndpoints,
   loadEndpointsFromFolder,

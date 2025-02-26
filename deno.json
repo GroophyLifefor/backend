@@ -1,12 +1,13 @@
 {
   "name": "@murat/backend",
   "exports": "./mod.ts",
+  "version": "0.2.3",
   "tasks": {
     "dev": "deno run --watch --allow-net --allow-read ./testing/main.ts",
     "bump:patch": "deno run --allow-read --allow-write bump_version.ts patch",
     "bump:minor": "deno run --allow-read --allow-write bump_version.ts minor",
     "bump:major": "deno run --allow-read --allow-write bump_version.ts major",
-    "deploy": "deploy" 
+    "deploy": "deploy"
   },
   "imports": {
     "@std/fs": "jsr:@std/fs@^1.0.13",

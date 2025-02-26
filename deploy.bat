@@ -28,4 +28,4 @@ git push
 goto end
 
 :end
-echo ^<^_^^> done ^<^_^^>
+echo DONE

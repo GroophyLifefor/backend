@@ -1,7 +1,8 @@
 {
   "name": "@murat/backend",
   "exports": "./mod.ts",
-  "version": "0.2.3",
+  "version": "0.2.4",
+  "license": "MIT",
   "tasks": {
     "dev": "deno run --watch --allow-net --allow-read ./testing/main.ts",
     "bump:patch": "deno run --allow-read --allow-write bump_version.ts patch",

@@ -10,6 +10,7 @@ import type {
   OptionalAppConfigType,
   Ctx,
   Middleware,
+  ValidationType,
 } from '@/types/types.d.ts';
 import { serveEndpoints } from '@/endpoints/serveEndpoints.ts';
 import { backend_log } from '@/lib/logging.ts';
@@ -62,4 +63,10 @@ class Backend {
   }
 }
 
-export { Backend, requestDataValidationMiddleware, type Ctx, type Middleware };
+export {
+  Backend,
+  requestDataValidationMiddleware,
+  type Ctx,
+  type Middleware,
+  type ValidationType,
+};

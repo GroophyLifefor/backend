@@ -1,6 +1,8 @@
 // deno-lint-ignore-file no-explicit-any
-import { Context } from "hono";
-import z from "zod";
+import type { Context } from 'hono';
+import type z from 'zod';
+import type { H } from 'hono/types';
+import type { Backend } from "@/mod.ts";
 
 type Ctx = Context;
 
@@ -27,10 +29,22 @@ type Endpoint = {
   openAPI?: string | undefined; // TODO: WILL BE IMPLEMENTED LATER
 };
 
+type ApplyMiddlewareParams = {
+  ctx: Ctx;
+  middleware: string;
+  endpoint?: ParsedEndpoint;
+};
+
+type ParsedMethod = { method: string; handler: EndpointHandler };
+
+type ExportsType = Record<string, any>;
+
 type ParsedEndpoint = {
+  middlewares: H[];
   path: string;
-  methods: { method: string; handler: EndpointHandler }[];
-}
+  methods: ParsedMethod[];
+  exports: ExportsType;
+};
 
 type AppConfigType = {
   debug: boolean;
@@ -41,4 +55,18 @@ type OptionalAppConfigType = {
   [K in keyof AppConfigType]?: AppConfigType[K];
 };
 
-export type { Ctx, ValidationType, EndpointHandler, Endpoint, ParsedEndpoint, AppConfigType, OptionalAppConfigType };
+type Middleware = (backend: Backend, request: ApplyMiddlewareParams) => Promise<Record<string, unknown>> | Record<string, unknown>;
+
+export type {
+  Ctx,
+  ValidationType,
+  EndpointHandler,
+  Endpoint,
+  ParsedEndpoint,
+  AppConfigType,
+  OptionalAppConfigType,
+  ParsedMethod,
+  ApplyMiddlewareParams,
+  Middleware,
+  ExportsType
+};

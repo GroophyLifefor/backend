@@ -1,13 +1,27 @@
-import { Backend } from "@/mod.ts";
-import { join } from "node:path";
+import {
+  Backend,
+  requestDataValidationMiddleware,
+  type Middleware,
+} from '@/mod.ts';
+import { join } from 'node:path';
 
-function main() {
+async function main() {
   const app = new Backend({
-    debug: true
+    debug: true,
   });
 
   const currentDir = Deno.cwd();
-  app.loadEndpointsFromFolder(join(currentDir, "testing", "api"));
+  await app.loadEndpointsFromFolder(join(currentDir, 'testing', 'api'));
+
+  const loggerMiddleware: Middleware = (backend, request) => {
+    backend.log('New request to ', request.ctx.req.path);
+    return { user: {} };
+  };
+
+  app.setMiddleware('logger', loggerMiddleware);
+  app.setMiddleware('dataValidation', requestDataValidationMiddleware);
+
+  app.serve();
 }
 
 await main();

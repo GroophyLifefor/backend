@@ -1,7 +1,23 @@
-import { Ctx } from "@/types/types.d.ts";
+import type { Ctx, ValidationType } from "@/types/types.d.ts";
+import z from "zod";
 
+// API endpoint handler
 export async function GET(ctx: Ctx) {
-  return await ctx.text('Hello, world!', 200);
+  const requestData = ctx.get('dataValidation').user
+  const query: QueryType = requestData.query;
+
+  return await ctx.text('Hello, ' + query.name, 200);
 }
 
+// API endpoint configs
 export const path = '/api/hello';
+export const middlewares = ['logger', 'dataValidation'];
+
+// API endpoint data validation
+export const validation: ValidationType = {
+  query: {
+    name: z.string()
+  },
+};
+const querySchema = z.object(validation.query as z.ZodRawShape);
+type QueryType = z.infer<typeof querySchema>;

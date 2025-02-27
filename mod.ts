@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { Hono } from 'hono';
 import {
   loadEndpoints,
@@ -34,9 +35,14 @@ class Backend {
     this.app = new Hono();
   }
 
-  // deno-lint-ignore no-explicit-any
   log(...params: any): void {
     backend_log(this, ...params);
+  }
+
+  throw(...params: any): void {
+    this.log('❌', ...params);
+    console.error('❌', ...params);
+    throw new Error(...params);
   }
 
   setMiddleware(name: string, middleware: Middleware) {
@@ -51,6 +57,12 @@ class Backend {
   }
 
   async loadEndpointsFromFolder(path: string): Promise<void> {
+    const isDenoDeploy = Deno.env.get("DENO_DEPLOYMENT_ID") !== undefined;
+
+    if (isDenoDeploy) {
+      this.throw('Deno Deploy does not support dynamic imports');
+    }
+
     const endpoints = await loadEndpointsFromFolder(this, path);
     endpoints.forEach((endpoint) => {
       this.endpointList.push(endpoint);
